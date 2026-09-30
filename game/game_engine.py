@@ -42,8 +42,12 @@ class GameEngine:
             correct = self.next_card.numeric_rank > self.current_card.numeric_rank
         else:
             correct = self.next_card.numeric_rank < self.current_card.numeric_rank
-        
-        if correct:
+
+        if self.next_card.numeric_rank == self.current_card.numeric_rank:
+            # Push: score and streak stay unchanged
+            self.status_msg = "PUSH / TIE! Rank matched"
+            self.status_color = (255, 235, 0)
+        elif correct:
             self.streak += 1
             points = self.multiplier
             self.score += points
